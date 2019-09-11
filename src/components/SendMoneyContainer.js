@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import SendMoney from './SendMoney';
+import { addTransaction } from '../store/actions';
 
 class SendMoneyContainer extends React.Component {
   constructor(props) {
@@ -18,6 +21,7 @@ class SendMoneyContainer extends React.Component {
   }
   onSubmit = () => {
     console.log('state', this.state)
+    this.props.sendTransaction(this.state);
   }
 
   render() {
@@ -33,5 +37,14 @@ class SendMoneyContainer extends React.Component {
     )
   }
 }
+const mapDispatchToProps = dispatch => {
+  return ({
+    sendTransaction: transaction => dispatch(addTransaction(transaction))
+  })
+}
 
-export default SendMoneyContainer;
+SendMoneyContainer.propTypes = {
+  sendTransaction: PropTypes.func.isRequired
+};
+
+export default connect(null, mapDispatchToProps)(SendMoneyContainer);

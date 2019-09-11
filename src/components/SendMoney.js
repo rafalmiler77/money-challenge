@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SendMoney = props => {
 
@@ -55,5 +56,13 @@ const SendMoney = props => {
     </section>
   )
 }
+
+SendMoney.propTypes = {
+  senderName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  onHandleChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default SendMoney;
