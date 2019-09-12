@@ -3,6 +3,7 @@ import * as ACTIONS_TYPES from './action-types';
 const INITIAL_AMOUNT = 20000;
 
 const initialState = {
+  initialAccountValue: INITIAL_AMOUNT,
   currentAccountValue: INITIAL_AMOUNT,
   transactions: []
 }
