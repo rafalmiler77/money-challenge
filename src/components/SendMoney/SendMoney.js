@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const SendMoney = props => {
 
   const handleChange = (event) => {
+    console.log('sendmoney props', props)
     const name = event.target.name;
     const value = event.target.value;
     props.onHandleChange(name, value)
@@ -14,6 +15,7 @@ const SendMoney = props => {
     props.onSubmit();
   }
   return (
+
     <section>
       <h2>Send Money</h2>
       <form onSubmit={handleSubmit}>
@@ -54,6 +56,7 @@ const SendMoney = props => {
         <button className="submit-button" type="submit" value="Submit">Submit</button>
       </form>
     </section>
+
   )
 }
 

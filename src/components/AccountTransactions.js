@@ -16,9 +16,9 @@ const AccountTransactions = props => {
   return (
     <>
       <h1>Transactions</h1>
-      {props.transactions.map((transaction) => {
+      {props.transactions.map((transaction, index) => {
         return (
-          <TransactionWarapper>
+          <TransactionWarapper key={index}>
             <SenderDetails>
               <span>{transaction.senderName}</span>
               <span>{transaction.email}</span>

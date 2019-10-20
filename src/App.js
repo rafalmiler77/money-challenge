@@ -1,5 +1,5 @@
 import React from 'react';
-import SendMoneyContainer from './components/SendMoneyContainer';
+import SendMoneyContainer from './components/SendMoney';
 import AccountDetailsContainer from './components/AccountDetailsContainer';
 import styled from 'styled-components';
 

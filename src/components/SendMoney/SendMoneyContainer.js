@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SendMoney from './SendMoney';
-import { addTransaction } from '../store/actions';
+import ValidationProvider from './ValidationProvider';
+import validators from './validators';
+import { addTransaction } from '../../store/actions';
 
 class SendMoneyContainer extends React.Component {
   constructor(props) {
@@ -15,6 +17,8 @@ class SendMoneyContainer extends React.Component {
   }
 
   changeInput = (name, value) => {
+    console.log('dddddddd', this.props)
+    this.props.validate(name, value);
     this.setState({
       [name]: value
     });
@@ -25,6 +29,7 @@ class SendMoneyContainer extends React.Component {
   }
 
   render() {
+    console.log('SendMoney props', this.props)
     const childProps = {
       senderName: this.state.senderName,
       email: this.state.email,
@@ -32,11 +37,33 @@ class SendMoneyContainer extends React.Component {
       onHandleChange: this.changeInput,
       onSubmit: this.onSubmit,
     }
+
     return (
       <SendMoney {...childProps} />
     )
   }
 }
+
+const SendMoneyContainerWithValidation = props => {
+  const validationRules = {
+    senderName: [{
+      required : validators.isRequired
+    }]
+  }
+  return (
+    <ValidationProvider rules={validationRules}>
+      {
+        (validation) => {
+          console.log('config of ValidationProvider', validation)
+          return (
+            <SendMoneyContainer {...props} {...validation} />
+          )
+        }
+      }
+    </ValidationProvider>
+  )
+}
+
 const mapDispatchToProps = dispatch => {
   return ({
     sendTransaction: transaction => dispatch(addTransaction(transaction))
@@ -47,4 +74,4 @@ SendMoneyContainer.propTypes = {
   sendTransaction: PropTypes.func.isRequired
 };
 
-export default connect(null, mapDispatchToProps)(SendMoneyContainer);
+export default connect(null, mapDispatchToProps)(SendMoneyContainerWithValidation);
