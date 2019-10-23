@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SendMoney from './SendMoney';
 import ValidationProvider from './ValidationProvider';
 import validators from './validators';
-import { addTransaction } from '../../store/actions';
+import { addTransaction, getTransactions } from '../../store/actions';
 
 class SendMoneyContainer extends React.Component {
   constructor(props) {
@@ -14,6 +14,10 @@ class SendMoneyContainer extends React.Component {
       email: 'ccc',
       amount: 10,
     };
+  }
+
+  componentDidMount() {
+    this.props.getTransactions();
   }
 
   changeInput = (name, value) => {
@@ -66,7 +70,8 @@ const SendMoneyContainerWithValidation = props => {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    sendTransaction: transaction => dispatch(addTransaction(transaction))
+    sendTransaction: transaction => dispatch(addTransaction(transaction)),
+    getTransactions: () => dispatch(getTransactions())
   })
 }
 
