@@ -12,7 +12,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import getTransactionsSaga from './sagas';
 
-const loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger({
+  collapsed: true,
+  diff: true
+});
 const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -20,8 +23,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const enhancer = composeEnhancers(
   applyMiddleware(
     thunkMiddleware,
-    loggerMiddleware,
-    sagaMiddleware
+    sagaMiddleware,
+    loggerMiddleware
   )
 )
 const store = createStore(reducer, enhancer);
