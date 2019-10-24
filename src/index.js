@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
-
 import createSagaMiddleware from 'redux-saga';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+
 import reducer from './store/reducer';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import getTransactionsSaga from './sagas';
+import getTransactionsSaga from './sagas/saga';
 
 const loggerMiddleware = createLogger({
   collapsed: true,

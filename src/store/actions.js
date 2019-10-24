@@ -6,5 +6,13 @@ export const addTransaction = transactions => ({
 })
 
 export const getTransactions = () => ({
-  type: ACTIONS_TYPES.GET_TRANSACTIONS
+  type: ACTIONS_TYPES.GET_TRANSACTIONS_REQUEST
+})
+
+export const getTransactionsSuccess = transactions => ({
+  type: ACTIONS_TYPES.GET_TRANSACTIONS_SUCCESS,
+  transactions
+})
+export const getTransactionsFailed = () => ({
+  type: ACTIONS_TYPES.GET_TRANSACTIONS_FAILED
 })

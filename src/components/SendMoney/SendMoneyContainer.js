@@ -5,13 +5,14 @@ import SendMoney from './SendMoney';
 import ValidationProvider from './ValidationProvider';
 import validators from './validators';
 import { addTransaction, getTransactions } from '../../store/actions';
+import { formatValue } from '../../utils/formatters/formatInput';
 
 class SendMoneyContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      senderName: 'ss',
-      email: 'ccc',
+      senderName: 'Mark',
+      email: 'abc@d.com',
       amount: 10,
     };
   }
@@ -21,10 +22,10 @@ class SendMoneyContainer extends React.Component {
   }
 
   changeInput = (name, value) => {
-    console.log('dddddddd', this.props)
     this.props.validate(name, value);
+    const formattedValue = formatValue(name, value);
     this.setState({
-      [name]: value
+      [name]: formattedValue
     });
   }
   onSubmit = () => {
