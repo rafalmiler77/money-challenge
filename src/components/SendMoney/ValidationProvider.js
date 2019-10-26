@@ -1,24 +1,28 @@
 import React from 'react';
 
 class ValidationProvider extends React.Component {
-  state = {
-    isInputValid: true
+  state = { };
+
+  isValueValid = (value, rules) => {
+    return rules.reduce((acc, curr) => {
+      return acc && curr(value);
+    }, true)
   }
 
   validate = (name, value) => {
     console.log('validating...', value, name)
-    console.log('ValidationProvider props', this.props)
-const w = this.props.rules[name]
-console.log('w', w)
+    const rules = Object.values(this.props.validationRules[name]);
+    const isValid = this.isValueValid(value, rules);
+
+    console.log('isValid: ', isValid)
     this.setState({
-      [name]: this.props.rules[name]
+      [name]: isValid
     })
   }
   render() {
     const config = {
       validate: this.validate,
-      isInputValid: this.state.isInputValid,
-      state: this.state
+      validationState: this.state
     }
     return this.props.children(config)
   }

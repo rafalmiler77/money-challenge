@@ -29,12 +29,10 @@ class SendMoneyContainer extends React.Component {
     });
   }
   onSubmit = () => {
-    console.log('state', this.state)
     this.props.sendTransaction(this.state);
   }
 
   render() {
-    console.log('SendMoney props', this.props)
     const childProps = {
       senderName: this.state.senderName,
       email: this.state.email,
@@ -49,26 +47,6 @@ class SendMoneyContainer extends React.Component {
   }
 }
 
-const SendMoneyContainerWithValidation = props => {
-  const validationRules = {
-    senderName: [{
-      required : validators.isRequired
-    }]
-  }
-  return (
-    <ValidationProvider rules={validationRules}>
-      {
-        (validation) => {
-          console.log('config of ValidationProvider', validation)
-          return (
-            <SendMoneyContainer {...props} {...validation} />
-          )
-        }
-      }
-    </ValidationProvider>
-  )
-}
-
 const mapDispatchToProps = dispatch => {
   return ({
     sendTransaction: transaction => dispatch(addTransaction(transaction)),
@@ -79,5 +57,25 @@ const mapDispatchToProps = dispatch => {
 SendMoneyContainer.propTypes = {
   sendTransaction: PropTypes.func.isRequired
 };
+
+const SendMoneyContainerWithValidation = props => {
+  const validationRules = {
+    senderName: {
+      'This field requires minimum 3 characters' : validators.minLength,
+      'This field is required' : validators.isRequired,
+    }
+  }
+  return (
+    <ValidationProvider validationRules={validationRules}>
+      {
+        (validation) => {
+          return (
+            <SendMoneyContainer {...props} {...validation} />
+          )
+        }
+      }
+    </ValidationProvider>
+  )
+}
 
 export default connect(null, mapDispatchToProps)(SendMoneyContainerWithValidation);
