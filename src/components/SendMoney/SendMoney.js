@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SendMoney = props => {
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -29,6 +28,11 @@ const SendMoney = props => {
             value={props.senderName}
             onChange={handleChange}
           />
+          {
+            typeof props.senderNameError === 'string'
+              ? <div>{props.senderNameError}</div>
+              : null
+          }
         </div>
 
         <div className="subsection">

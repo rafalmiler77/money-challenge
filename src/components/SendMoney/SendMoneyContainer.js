@@ -35,6 +35,7 @@ class SendMoneyContainer extends React.Component {
   render() {
     const childProps = {
       senderName: this.state.senderName,
+      senderNameError: this.props.validationState.senderName,
       email: this.state.email,
       amount: this.state.amount,
       onHandleChange: this.changeInput,
@@ -60,11 +61,11 @@ SendMoneyContainer.propTypes = {
 
 const SendMoneyContainerWithValidation = props => {
   const validationRules = {
-    senderName: {
-      'This field requires minimum 3 characters' : validators.minLength,
-      'This field is required' : validators.isRequired,
-    }
-  }
+    senderName: [
+      {'This field requires minimum 3 characters' : validators.minLength},
+      {'This field is required' : validators.isRequired}
+    ]
+  };
   return (
     <ValidationProvider validationRules={validationRules}>
       {
