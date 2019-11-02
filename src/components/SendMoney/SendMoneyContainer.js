@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SendMoney from './SendMoney';
-import ValidationProvider from './ValidationProvider';
-import validators from './validators';
+import { ValidationProvider, validators } from '../Validation';
 import { addTransaction, getTransactions } from '../../store/actions';
 import { formatValue } from '../../utils/formatters/formatInput';
 
@@ -28,6 +27,7 @@ class SendMoneyContainer extends React.Component {
       [name]: formattedValue
     });
   }
+
   onSubmit = () => {
     this.props.sendTransaction(this.state);
   }
@@ -35,7 +35,7 @@ class SendMoneyContainer extends React.Component {
   render() {
     const childProps = {
       senderName: this.state.senderName,
-      senderNameError: this.props.validationState.senderName,
+      errors: this.props.errors,
       email: this.state.email,
       amount: this.state.amount,
       onHandleChange: this.changeInput,
@@ -63,6 +63,10 @@ const SendMoneyContainerWithValidation = props => {
   const validationRules = {
     senderName: [
       {'This field requires minimum 3 characters' : validators.minLength},
+      {'This field is required' : validators.isRequired}
+    ],
+    email: [
+      // {'Provide the right email' : validators.validateEmail}, // TODO: implement email validation
       {'This field is required' : validators.isRequired}
     ]
   };

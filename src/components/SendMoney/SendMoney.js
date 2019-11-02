@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputField from '../InputField/InputField';
+import { validationPropType } from '../Validation';
 
 const SendMoney = props => {
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  const handleInputChange = (name, value) => {
     props.onHandleChange(name, value)
   }
 
@@ -13,50 +13,29 @@ const SendMoney = props => {
     props.onSubmit();
   }
   return (
-
     <section>
       <h2>Send Money</h2>
       <form onSubmit={handleSubmit}>
+        <InputField
+          onChange={handleInputChange}
+          fieldName='senderName'
+          value={props.senderName}
+          error={props.errors['senderName']}
+        />
+        <InputField
+          onChange={handleInputChange}
+          fieldName='email'
+          value={props.email}
+          error={props.errors['email']}
+        />
+        <InputField
+          onChange={handleInputChange}
+          fieldName='amount'
+          value={props.amount}
+          error={props.errors['amount']}
+        />
 
-        <div className="subsection">
-          <label>
-            Name:
-          </label>
-          <input
-            name="senderName"
-            type="text"
-            value={props.senderName}
-            onChange={handleChange}
-          />
-          {
-            typeof props.senderNameError === 'string'
-              ? <div>{props.senderNameError}</div>
-              : null
-          }
-        </div>
-
-        <div className="subsection">
-          <label>
-            Email adress:
-          </label>
-          <input
-            name="email"
-            type="text"
-            value={props.email}
-            onChange={handleChange} />
-        </div>
-
-        <div className="subsection">
-          <label>
-            Amount:
-          </label>
-          <input
-            name="amount"
-            type="text"
-            value={props.amount}
-            onChange={handleChange} />
-        </div>
-        <button className="submit-button" type="submit" value="Submit">Submit</button>
+        <button className='submit-button' type='submit' value='Submit'>Submit</button>
       </form>
     </section>
   )
@@ -68,6 +47,7 @@ SendMoney.propTypes = {
   amount: PropTypes.number.isRequired,
   onHandleChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  ...validationPropType
 };
 
 export default SendMoney;

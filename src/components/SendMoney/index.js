@@ -1,4 +1,4 @@
 import SendMoneyContainer from './SendMoneyContainer';
-import withSthElse from './withSthElse';
+import withResolution from '../HOC/withResolution';
 
-export default withSthElse({cc: 'someAdditProps'})(SendMoneyContainer);
+export default withResolution({extraProp: 'someAdditProps'})(SendMoneyContainer);  // TODO: implement
