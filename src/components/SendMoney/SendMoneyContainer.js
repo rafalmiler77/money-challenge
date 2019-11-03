@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SendMoney from './SendMoney';
-import { ValidationProvider, validators } from '../Validation';
+import { ValidationProvider, validators } from '../../Validation';
 import { addTransaction, getTransactions } from '../../store/actions';
 import { formatValue } from '../../utils/formatters/formatInput';
 

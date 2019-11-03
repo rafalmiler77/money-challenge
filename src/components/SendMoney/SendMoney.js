@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import InputField from '../InputField/InputField';
-import { validationPropType } from '../Validation';
+import { validationPropType } from '../../Validation';
+import withResolution from '../../HOC/withResolution';
+
+const Button = styled.button`
+  padding: 10px;
+  margin-top: 20px;
+  border 1px grey solid;
+  border-radius: 3px;
+`;
 
 const SendMoney = props => {
   const handleInputChange = (name, value) => {
@@ -19,23 +28,26 @@ const SendMoney = props => {
         <InputField
           onChange={handleInputChange}
           fieldName='senderName'
+          label='Name'
           value={props.senderName}
           error={props.errors['senderName']}
         />
         <InputField
           onChange={handleInputChange}
           fieldName='email'
+          label='E-mail'
           value={props.email}
           error={props.errors['email']}
         />
         <InputField
           onChange={handleInputChange}
           fieldName='amount'
+          label='Amount'
           value={props.amount}
           error={props.errors['amount']}
         />
 
-        <button className='submit-button' type='submit' value='Submit'>Submit</button>
+        <Button type='submit' value='Submit'>Submit</Button>
       </form>
     </section>
   )
@@ -50,4 +62,4 @@ SendMoney.propTypes = {
   ...validationPropType
 };
 
-export default SendMoney;
+export default withResolution()(SendMoney);

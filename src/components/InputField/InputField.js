@@ -1,5 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Wrapper = styled.section`
+  padding: 20px 20px 0 0;
+`;
+
+const Label = styled.label`
+  display: block;
+  padding-bottom: 8px;
+  font-size: 16px;
+`;
+
+const Input = styled.input`
+  padding: 6px;
+  color: #3b3b3b;
+  border 1px grey solid;
+  border-radius: 3px;
+  font-size: 14px;
+  background: #f3f3f3;
+  width: 200px;
+`;
+
+const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 8px;
+  font-size: 12px;
+`;
 
 const InputField = props => {
   const handleChange = (event) => {
@@ -9,11 +36,11 @@ const InputField = props => {
   }
 
   return (
-    <div className="subsection">
-      <label>
-        {props.fieldName}:
-      </label>
-      <input
+    <Wrapper>
+      <Label>
+        {props.label}:
+      </Label>
+      <Input
         name={props.fieldName}
         type="text"
         value={props.value}
@@ -21,10 +48,10 @@ const InputField = props => {
       />
       {
         props.error
-          ? <div>{props.error}</div>
+          ? <ErrorMessage>{props.error}</ErrorMessage>
           : null
       }
-    </div>
+    </Wrapper>
   )
 }
 
