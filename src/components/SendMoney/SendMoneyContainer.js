@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import SendMoney from './SendMoney';
 import { ValidationProvider, validators } from '../../Validation';
 import { addTransaction, getTransactions } from '../../store/actions';
@@ -10,9 +11,9 @@ class SendMoneyContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      senderName: 'Mark',
-      email: 'abc@d.com',
-      amount: 10,
+      senderName: '',
+      email: '',
+      amount: '',
     };
   }
 
@@ -20,12 +21,28 @@ class SendMoneyContainer extends React.Component {
     this.props.getTransactions();
   }
 
+  sanitizeAmount = (name, value) => {
+    if (name !== 'amount') {
+      return {name, value};
+    }
+    if (typeof +value === 'number' && !isNaN(+value)) {
+      return {name, value: +value};
+    }
+    return {name, value: undefined};
+  }
+
   changeInput = (name, value) => {
-    this.props.validate(name, value);
-    const formattedValue = formatValue(name, value);
-    this.setState({
-      [name]: formattedValue
-    });
+    const formattedValue = compose(
+      formatValue,
+      this.sanitizeAmount)(name, value);
+      
+    this.props.validate(name, formattedValue);
+
+    if (formattedValue !== undefined) {
+      this.setState({
+        [name]: formattedValue
+      });
+    }
   }
 
   onSubmit = () => {
@@ -66,8 +83,11 @@ const SendMoneyContainerWithValidation = props => {
       {'This field is required' : validators.isRequired}
     ],
     email: [
-      // {'Provide the right email' : validators.validateEmail}, // TODO: implement email validation
+      {'Provide the right email' : validators.validateEmail},
       {'This field is required' : validators.isRequired}
+    ],
+    amount: [
+      {'Amount must be greater than zero' : validators.isRequired}
     ]
   };
   return (

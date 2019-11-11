@@ -1,6 +1,4 @@
-export const formatValue = (name, value) => {
-  if (name === 'amount') {
-    return +value;
-  }
+export const formatValue = ({ name, value }) => {
+  // TODO: implement
   return value;
 }
