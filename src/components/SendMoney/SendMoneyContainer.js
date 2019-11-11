@@ -45,8 +45,22 @@ class SendMoneyContainer extends React.Component {
     }
   }
 
+  canSubmit = (errors) => {
+    const numberOfValidations = 3;
+    const validationsList = Object.values(errors);
+    if (validationsList.length < numberOfValidations) {
+      return false;
+    };
+
+    return validationsList.reduce((prev,curr) => {
+      return curr === true ? prev : false;
+    }, true)
+  }
+
   onSubmit = () => {
-    this.props.sendTransaction(this.state);
+    if (this.canSubmit(this.props.errors)) {
+      this.props.sendTransaction(this.state);
+    };
   }
 
   render() {
