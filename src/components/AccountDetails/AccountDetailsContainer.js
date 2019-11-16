@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AccountDetails from './AccountDetails';
-import AccountTransactions from './AccountTransactions';
+import Transactions from './Transactions';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
+  padding: 0 20px;
 `;
 
 const AccountDetailsContainer = props => {
@@ -22,7 +23,7 @@ const AccountDetailsContainer = props => {
   return (
     <Wrapper>
       <AccountDetails {...accountProps}/>
-      <AccountTransactions {...transactionsProps}/>
+      <Transactions {...transactionsProps}/>
     </Wrapper>
   )
 }

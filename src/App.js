@@ -3,29 +3,40 @@ import styled from 'styled-components';
 import SendMoneyContainer from './components/SendMoney';
 import AccountDetailsContainer from './components/AccountDetails/AccountDetailsContainer';
 
-const ContentContainer = styled.main`
-  padding: 4rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+const Container = styled.div`
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
 `;
+
 const Header = styled.header`
   text-align: center;
-  padding: 2rem;
-  background: papayawhip;
+  padding: 1.2rem;
+  background: #d8d1b6;
+  grid-column: 1 / span 2;
+  grid-row: 1;
+`;
+
+const Title = styled.h2`
+  color: #121212;
+  font-size: 24px;
+`;
+const SubTitle = styled.h3`
+  color: #464646;
+  font-size: 18px;
 `;
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Header>
-        Send Money
+        <Title>Send Money</Title>
+        <SubTitle>Personal Playground</SubTitle>
       </Header>
-      <ContentContainer>
-        <SendMoneyContainer></SendMoneyContainer>
-        <AccountDetailsContainer></AccountDetailsContainer>
-      </ContentContainer>
-    </div>
+      <SendMoneyContainer></SendMoneyContainer>
+      <AccountDetailsContainer></AccountDetailsContainer>
+    </Container>
   );
 }
 

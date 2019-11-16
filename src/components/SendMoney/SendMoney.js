@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import InputField from '../InputField/InputField';
+import SectionTitle from '../common/SectionTitle';
 import { validationPropType } from '../../Validation';
 import withResolution from '../../HOC/withResolution';
+
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Button = styled.button`
   padding: 10px;
   margin-top: 20px;
-  border 1px grey solid;
+  border: 1px grey solid;
   border-radius: 3px;
 `;
 
@@ -22,8 +29,8 @@ const SendMoney = props => {
     props.onSubmit();
   }
   return (
-    <section>
-      <h2>Send Money</h2>
+    <Wrapper>
+      <SectionTitle>Send Money</SectionTitle>
       <form onSubmit={handleSubmit}>
         <InputField
           onChange={handleInputChange}
@@ -49,7 +56,7 @@ const SendMoney = props => {
 
         <Button type='submit' value='Submit'>Submit</Button>
       </form>
-    </section>
+    </Wrapper>
   )
 }
 

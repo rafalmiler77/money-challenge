@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SectionTitle from '../common/SectionTitle';
 
 const SenderDetails = styled.div`
   display: flex;
@@ -11,11 +12,11 @@ const TransactionWarapper = styled.div`
   justify-content: space-between;
 `;
 
-const AccountTransactions = props => {
+const Transactions = props => {
   console.log('props', props)
   return (
     <>
-      <h1>Transactions</h1>
+      <SectionTitle>Transactions</SectionTitle>
       {props.transactions.map((transaction, index) => {
         return (
           <TransactionWarapper key={index}>
@@ -31,4 +32,4 @@ const AccountTransactions = props => {
   )
 }
 
-export default AccountTransactions;
+export default Transactions;
