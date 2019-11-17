@@ -32,7 +32,7 @@ function App() {
     <Container>
       <Header>
         <Title>Send Money</Title>
-        <SubTitle>Personal Playground</SubTitle>
+        <SubTitle>Javascript Playground</SubTitle>
       </Header>
       <SendMoneyContainer></SendMoneyContainer>
       <AccountDetailsContainer></AccountDetailsContainer>
