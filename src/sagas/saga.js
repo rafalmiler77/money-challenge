@@ -9,7 +9,7 @@ function* getTransactions() {
     const transactions = yield data.json();
     yield put(actions.getTransactionsSuccess(transactions));
   } catch(error) {
-    yield put(actions.getTransactionsFailed);
+    yield put(actions.getTransactionsFailed());
     console.error(`Couldn't fetch transactions`, error);
   }
 }
