@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
-const port = 5000
-const db = require("./db")
+const db = require('./db')
+const cors = require('cors')
+const port = 5001
 
+app.use(cors());
 app.get("/senders", (req, res, next) => {
   console.log('database', db)
   var sql = "select * from senders"
