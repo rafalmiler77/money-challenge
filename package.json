@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "http-proxy-middleware": "0.20.0",
     "lodash": "^4.17.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -18,11 +19,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:docker": "REACT_APP_WITH_DOCKER=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://money-challenge-server:5001",
   "eslintConfig": {
     "extends": "react-app"
   },
