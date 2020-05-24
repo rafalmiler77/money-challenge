@@ -10,11 +10,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case ACTIONS_TYPES.ADD_TRANSACTION: {
+  case ACTIONS_TYPES.ADD_TRANSACTION_SUCCESS: {
     return ({
       ...state,
-      currentAccountValue: state.currentAccountValue - action.transactions.amount,
-      transactions: state.transactions.concat(action.transactions)
+      currentAccountValue: state.currentAccountValue - action.transaction.amount,
+      transactions: state.transactions.concat(action.transaction)
     });
   }
   case ACTIONS_TYPES.GET_TRANSACTIONS_SUCCESS: {

@@ -1,8 +1,17 @@
 import * as ACTIONS_TYPES from './action-types';
 
-export const addTransaction = transactions => ({
-  type: ACTIONS_TYPES.ADD_TRANSACTION,
-  transactions
+export const addTransaction = transaction => ({
+  type: ACTIONS_TYPES.ADD_TRANSACTION_REQUEST,
+  transaction
+})
+
+export const addTransactionSuccess = transaction => ({
+  type: ACTIONS_TYPES.ADD_TRANSACTION_SUCCESS,
+  transaction
+})
+
+export const addTransactionFailed = () => ({
+  type: ACTIONS_TYPES.ADD_TRANSACTION_FAILED
 })
 
 export const getTransactions = () => ({
