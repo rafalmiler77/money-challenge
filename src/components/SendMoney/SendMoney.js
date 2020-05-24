@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import InputField from '../InputField/InputField';
 import SectionTitle from '../common/SectionTitle';
+import Tooltip from '../Tooltip';
 import { validationPropType } from '../../Validation';
 import withResolution from '../../HOC/withResolution';
 
@@ -32,6 +33,7 @@ const SendMoney = props => {
     <Wrapper>
       <SectionTitle>Send Money</SectionTitle>
       <form onSubmit={handleSubmit}>
+        <Tooltip />
         <InputField
           onChange={handleInputChange}
           fieldName='senderName'
