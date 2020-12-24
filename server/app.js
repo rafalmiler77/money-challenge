@@ -53,4 +53,4 @@ app.post('/api/add', (req, res) => {
 
 app.get('/', (req, res) => res.send('Money challenge ready!'))
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Server listening on port ${port}!`))

@@ -11,3 +11,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Docker
 [Create docker image](docker build -f Dockerfile.dev -t money-challenge:dev .)
+[Create multi image](docker-compose -f docker-compose_with_nginx.yml up --build)
